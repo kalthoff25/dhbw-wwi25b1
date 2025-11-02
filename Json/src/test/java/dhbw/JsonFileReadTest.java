@@ -3,7 +3,7 @@ package dhbw;
 
 
 import com.google.gson.Gson;
-import dhbw.Person;
+import de.dhbw.me.model.Person;
 import org.assertj.core.api.InstanceOfAssertFactories;
 import org.junit.jupiter.api.Test;
 

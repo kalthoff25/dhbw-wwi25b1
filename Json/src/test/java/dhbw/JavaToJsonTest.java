@@ -4,8 +4,8 @@ package dhbw;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import dhbw.Company;
-import dhbw.Person;
+import de.dhbw.me.model.Company;
+import de.dhbw.me.model.Person;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

@@ -2,7 +2,7 @@ package dhbw;
 
 
 import com.google.gson.Gson;
-import dhbw.Person;
+import de.dhbw.me.model.Person;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

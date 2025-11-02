@@ -1,4 +1,4 @@
-package dhbw;
+package de.dhbw.me.model;
 
 public class Company {
     private String name;

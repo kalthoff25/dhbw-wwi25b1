@@ -1,4 +1,4 @@
-package dhbw;
+package de.dhbw.me.model;
 
 import java.io.IOException;
 import java.io.InputStream;
