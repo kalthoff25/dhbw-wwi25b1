@@ -8,7 +8,14 @@
     <version>1.0.0</version>
     <name>JSON + GSON + JUnit6 Example</name>
 
+    <!-- sorgt dafür, dass mit Java 21 gebaut wird -->
+    <properties>
+        <maven.compiler.release>21</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
     <dependencies>
+        <!-- JUnit 6 -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -16,6 +23,7 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- AssertJ (komfortable Assertions) -->
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
@@ -23,6 +31,7 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- GSON für JSON-Handling -->
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
@@ -32,7 +41,17 @@
 
     <build>
         <plugins>
-            <!-- Surefire führt die JUnit-Tests aus -->
+            <!-- Java-Compiler-Einstellungen -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <release>${maven.compiler.release}</release>
+                </configuration>
+            </plugin>
+
+            <!-- Testausführung -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>

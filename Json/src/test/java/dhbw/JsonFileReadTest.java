@@ -1,44 +1,40 @@
 package dhbw;
 
-
-
 import com.google.gson.Gson;
 import de.dhbw.me.model.Person;
-import org.assertj.core.api.InstanceOfAssertFactories;
 import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
+import java.io.InputStreamReader;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class JsonFileReadTest {
 
     @Test
-    void readJsonFromClasspath_andAssertAllFields() throws Exception {
+    void readJsonFromClasspath_andAssertAllFields() {
         InputStream in = getClass().getClassLoader().getResourceAsStream("person.json");
-        assertThat(in).as("person.json muss im Test-CLASSPATH liegen").isNotNull();
+        assertThat(in).isNotNull();
 
-        String json = new String(in.readAllBytes(), StandardCharsets.UTF_8);
-        Person p = new Gson().fromJson(json, Person.class);
+        Person p = new Gson().fromJson(new InputStreamReader(in), Person.class);
+        assertThat(p).isNotNull();
 
-        assertThat(p.getFirstname()).isEqualTo("Ralf");
-        assertThat(p.getLastname()).isEqualTo("Klemmer");
-        assertThat(p.getStreet()).isEqualTo("Musterweg");
-        assertThat(p.getNo()).isEqualTo(12);
-        assertThat(p.getZip()).isEqualTo(76133);
-        assertThat(p.getCity()).isEqualTo("Karlsruhe");
-        assertThat(p.getHobbies()).containsExactly("Coding", "Bouldern", "Kaffee");
+        // --- Person-Attribute ---
+        assertThat(p.getFirstname()).isEqualTo("Kevin");
+        assertThat(p.getLastname()).isEqualTo("Althoff");
+        assertThat(p.getStreet()).isEqualTo("Wesetalstr.");
+        assertThat(p.getNo()).isEqualTo(39);
+        assertThat(p.getZip()).isEqualTo(34549);
+        assertThat(p.getCity()).isEqualTo("Edertal");
+        assertThat(p.getHobbies()).containsExactly("SKI", "Fußball", "Matcha");
 
-        assertThat(p.getCompany())
-                .asInstanceOf(InstanceOfAssertFactories.type(de.dhbw.me.model.Company.class))
-                .satisfies(c -> {
-                    assertThat(c.getName()).isEqualTo("DHBW Solutions GmbH");
-                    assertThat(c.getHeadquarter_city()).isEqualTo("Stuttgart");
-                    assertThat(c.isFromKarlsruhe()).isTrue();
-                });
+        // --- Company-Attribute ---
+        assertThat(p.getCompany()).isNotNull();
+        assertThat(p.getCompany().getName()).isEqualTo("United Internet");
+        assertThat(p.getCompany().getHeadquarter_city()).isEqualTo("Karlsruhe");
+        assertThat(p.getCompany().isFromKarlsruhe()).isTrue();
 
-        // toString-Separator aus Properties prüfen
-        assertThat(p.toString()).contains("Ralf#Klemmer");
+        // --- Optional: Check der toString()-Methode ---
+        assertThat(p.toString()).contains("Kevin#Althoff");
     }
 }
