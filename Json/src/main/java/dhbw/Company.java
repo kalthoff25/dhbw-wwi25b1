@@ -1,4 +1,4 @@
-
+package dhbw;
 
 public class Company {
     private String name;
