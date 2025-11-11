@@ -1,21 +1,37 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>de.dhbw</groupId>
-    <artifactId>json-to-java</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <groupId>de.dhbw.me</groupId>
+    <artifactId>json-gson-junit6-example</artifactId>
+    <version>1.0.0</version>
+    <name>JSON + GSON + JUnit6 Example</name>
 
+    <!-- sorgt dafür, dass mit Java 21 gebaut wird -->
     <properties>
-        <maven.compiler.source>25</maven.compiler.source>
-        <maven.compiler.target>25</maven.compiler.target>
+        <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
     <dependencies>
+        <!-- JUnit 6 -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>6.0.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- AssertJ (komfortable Assertions) -->
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.27.6</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- GSON für JSON-Handling -->
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
@@ -25,24 +41,23 @@
 
     <build>
         <plugins>
-            <!-- Compiler Plugin for Java 25 and encoding -->
+            <!-- Java-Compiler-Einstellungen -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
+                <version>3.13.0</version>
                 <configuration>
-                    <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
-                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <release>${maven.compiler.release}</release>
                 </configuration>
             </plugin>
-            <!-- Resources Plugin for encoding -->
+
+            <!-- Testausführung -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>3.3.1</version>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.4</version>
                 <configuration>
-                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <useModulePath>false</useModulePath>
                 </configuration>
             </plugin>
         </plugins>
